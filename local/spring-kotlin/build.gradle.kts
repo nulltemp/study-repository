@@ -34,3 +34,9 @@ tasks.withType<KotlinCompile> {
 tasks.withType<Test> {
 	useJUnitPlatform()
 }
+
+springBoot {
+	buildInfo {
+		destinationDir = File("src/main/resources/META-INF")
+	}
+}
