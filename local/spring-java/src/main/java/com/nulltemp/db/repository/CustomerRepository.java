@@ -1,12 +1,13 @@
 package com.nulltemp.db.repository;
 
+import com.nulltemp.db.entity.CustomerEntity;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
+
 import java.util.List;
 
-import org.springframework.data.repository.PagingAndSortingRepository;
-import org.springframework.data.repository.query.Param;
-
-import com.nulltemp.db.entity.Customer;
-
-public interface CustomerRepository extends PagingAndSortingRepository<Customer, Long> {
-	List<Customer> findByLastName(@Param("lastName") String lastName);
+@Repository
+public interface CustomerRepository extends JpaRepository<CustomerEntity, Long> {
+	List<CustomerEntity> findByLastName(@Param("lastName") String lastName);
 }

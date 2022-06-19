@@ -14,7 +14,7 @@ import com.nulltemp.service.MessageService;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/messages")
+@RequestMapping("api/messages")
 public class MessageController {
 	@Autowired
 	private MessageService messageService;
