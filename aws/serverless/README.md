@@ -26,6 +26,10 @@ In order to deploy the example, you need to run the following command:
 $ serverless deploy
 ```
 
+```
+$ serverless deploy function -f functionName
+```
+
 After running deploy, you should see output similar to:
 
 ```bash
@@ -69,4 +73,9 @@ Which should result in response similar to the following:
     "statusCode": 200,
     "body": "{\n  \"message\": \"Go Serverless v3.0! Your function executed successfully!\",\n  \"input\": \"\"\n}"
 }
+```
+### delete
+
+```bash
+serverless remove
 ```
