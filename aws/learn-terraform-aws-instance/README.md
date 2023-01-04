@@ -1,3 +1,5 @@
+https://developer.hashicorp.com/terraform/tutorials/aws-get-started
+
 ### 初期化
 ```
 terraform init
