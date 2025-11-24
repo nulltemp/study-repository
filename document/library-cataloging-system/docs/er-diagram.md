@@ -6,6 +6,10 @@ erDiagram
         string isbn
         int publisher_id
     }
+    PUBLISHER {
+        int id
+        string name
+    }
     AUTHOR {
         int id
         string name
@@ -17,12 +21,13 @@ erDiagram
     LOAN {
         int id
         int book_id
+        int user_id
         date loan_date
         date return_date
     }
     BASE_USER {
         int id
-        string username
+        string name
         string email
         string password_hash
         string role       "USER / ADMIN"
@@ -40,7 +45,9 @@ erDiagram
 
     BOOK ||--o{ BOOK_AUTHOR : "has"
     AUTHOR ||--o{ BOOK_AUTHOR : "writes"
+    PUBLISHER ||--o{ BOOK : 出版する
     BOOK ||--o{ LOAN : "is borrowed in"
+    BASE_USER ||--|| LOAN : "借りる"
     BASE_USER ||--|| ACTIVE_USER : has
     BASE_USER ||--|| DELETED_USER : has
 ```
