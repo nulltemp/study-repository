@@ -3,7 +3,7 @@ erDiagram
     BOOK {
         int id
         string title
-        string isbn
+        string isbn "UNIQUE"
         int publisher_id
     }
     PUBLISHER {
@@ -18,12 +18,34 @@ erDiagram
         int book_id
         int author_id
     }
+    GENRE {
+        int id
+        string name
+    }
+    BOOK_GENRE {
+        int book_id
+        int genre_id
+    }
+    COPY {
+        int id
+        int book_id
+        string status    "AVAILABLE / LOANED / LOST / MAINTENANCE"
+    }
     LOAN {
+        int id
+        int copy_id
+        int user_id
+        date loan_date
+        date due_date
+        date return_date
+    }
+    RESERVATION {
         int id
         int book_id
         int user_id
-        date loan_date
-        date return_date
+        datetime reserved_at
+        datetime expires_at
+        string status "PENDING / FULFILLED / CANCELLED"
     }
     BASE_USER {
         int id
@@ -45,9 +67,13 @@ erDiagram
 
     BOOK ||--o{ BOOK_AUTHOR : "has"
     AUTHOR ||--o{ BOOK_AUTHOR : "writes"
+    BOOK ||--o{ BOOK_GENRE : "categorized"
+    GENRE ||--o{ BOOK_GENRE : "has"
     PUBLISHER ||--o{ BOOK : 出版する
-    BOOK ||--o{ LOAN : "is borrowed in"
-    BASE_USER ||--|| LOAN : "借りる"
+    BOOK ||--o{ COPY : "has copies"
+    COPY ||--o{ LOAN : "is borrowed in"
+    BASE_USER ||--o{ LOAN : "borrows"
+    BASE_USER ||--o{ RESERVATION : "makes"
     BASE_USER ||--|| ACTIVE_USER : has
     BASE_USER ||--|| DELETED_USER : has
 ```
